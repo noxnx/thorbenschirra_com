@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${playfair.className} text-black text-lg px-24`}>
+      <body className={`${playfair.className} text-black text-lg`}>
         {children}
       </body>
     </html>
