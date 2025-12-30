@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${playfair.className} text-black text-lg`}>
+    <html lang="en" className="bg-white">
+      <body className={`${playfair.className} text-black text-lg bg-white`}>
         {children}
       </body>
     </html>
