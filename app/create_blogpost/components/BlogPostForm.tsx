@@ -15,11 +15,11 @@ export default function BlogpostForm() {
   const [success, setSuccess] = useState<boolean>(false);
 
   function handleHeader(event: React.ChangeEvent<HTMLInputElement>) {
-    setDescription(event?.currentTarget.value);
+    setHeader(event?.currentTarget.value);
   }
 
   function handleDescription(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    setHeader(event?.currentTarget.value);
+    setDescription(event?.currentTarget.value);
   }
 
   function handleContent(event: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -41,7 +41,9 @@ export default function BlogpostForm() {
     ); /* this function is not finished!!! */
   }
 
-  async function submitPost() {
+  async function submitPost(event: React.FormEvent) {
+    event?.preventDefault();
+
     if (!header || !description || !content || !keywords) {
       return alert("Missing inputs!");
     }
@@ -78,12 +80,11 @@ export default function BlogpostForm() {
   };
 
   return (
-    <form className="flex flex-col space-y-8 items-end">
+    <form onSubmit={submitPost} className="flex flex-col space-y-8 items-end">
       <input
         type="text"
         className="input bg-white w-full border border-gray-200"
         placeholder="Header"
-        onSubmit={submitPost}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
           handleHeader(event)
         }
@@ -116,6 +117,7 @@ export default function BlogpostForm() {
         {keywords.map((keyword, index) => {
           return (
             <button
+              type="button"
               onClick={() => deleteKeyword(keyword)}
               value={keyword}
               key={index}
@@ -131,13 +133,13 @@ export default function BlogpostForm() {
         placeholder="Description"
         onChange={(event) => handleDescription(event)}
         value={description}
-      />
+      ></textarea>
       <textarea
         className="textarea bg-white w-full min-h-screen border border-gray-200"
         placeholder="Start typing..."
         onChange={(event) => handleContent(event)}
         value={content}
-      />
+      ></textarea>
       <button type="submit" className="btn w-96">
         Create blogpost
       </button>

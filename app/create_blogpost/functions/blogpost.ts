@@ -64,12 +64,17 @@ export async function getPost(id: Blogpost) {
 
 export async function storePost(blogpost: StoreBlogpost) {
     try {
-        const response = await supabase.from("posts").insert({
-            header: blogpost.header,
-            description: blogpost.description,
-            content: blogpost.content,
-            keywords: blogpost.keywords
-        })
+        const response = await supabase
+            .from("posts")
+            .insert({
+                header: blogpost.header,
+                description: blogpost.description,
+                content: blogpost.content,
+                keywords: blogpost.keywords
+            })
+            .select();
+
+        console.log("storePost response:", response);
 
         if (response.error) {
             return {
