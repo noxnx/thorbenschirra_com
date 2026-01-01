@@ -40,4 +40,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-app/client/supabase.ts
+/client/supabase.ts
