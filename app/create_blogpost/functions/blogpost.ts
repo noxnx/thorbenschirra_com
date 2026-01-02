@@ -2,7 +2,7 @@
 
 import cookies from "next/headers";
 import { Blogpost, StoreBlogpost } from "@/app/types/blogpost";
-import { supabaseClient } from "@/app/clients/supabase";
+import { supabaseClient } from "@/app/lib/clients/supabase";
 
 const supabase = await supabaseClient();
 
