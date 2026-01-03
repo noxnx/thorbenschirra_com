@@ -1,6 +1,16 @@
 import Header from "@/app/components/Header";
+import { getPosts } from "../create_blogpost/functions/blogpost";
+import { Blogpost } from "../types/blogpost";
 
-export default function blog() {
+export default async function blog() {
+  const response = await getPosts();
+
+  if (response.status !== 200 || typeof response.body == "string") {
+    throw new Error("An error occurred loading the blogposts!");
+  }
+
+  const blogposts = response.body;
+
   return (
     <div>
       <Header />
@@ -20,29 +30,24 @@ export default function blog() {
         <div className="text-3xl font-semibold">
           <h1 className="text-4xl font-semibold">Recent blogposts</h1>
         </div>
-        <div className="space-y-4 max-w-2/3 border border-gray-200 rounded-box p-4 shadow-md hover:cursor-pointer">
-          <h2 /* Post header */ className="text-3xl font-semibold">
-            My first blogpost
-          </h2>
-          <p className="border-t border-gray-300 py-8">
-            In this blogpost I want to share the story that led me to creating
-            this blog.
-            <br />
-            This is my first ever post, so laugh if I did something crazy...
-            <br />
-            Feedback is highly appreciated!!!
-          </p>
-
-          {/* <ul className="border-t py-8">
-            <strong>What is the motivation for creating this blog? </strong>
-            <br />I want to share:
-            <li>where my interests lie</li>
-            <li>
-              things that come to my mind and could be interesting to others
-            </li>
-            <li>topics I want to share my perspective or experience from</li>
-          </ul> */}
-        </div>
+        {blogposts.map((post, index) => {
+          const keywords = post.keywords;
+          return (
+            <div key={index} className="flex flex-col items-end space-y-4">
+              <h2 className="text-2xl font-semibold border-b border-gray-200 w-full">
+                {post.header}
+              </h2>
+              <div className="flex flex-row justify-start w-full">
+                {keywords.map((keyword: string, index: number) => (
+                  <div className="p-2 bg-black rounded-box" key={index}>
+                    {keyword}
+                  </div>
+                ))}
+              </div>
+              <p className="w-full">{post.description}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

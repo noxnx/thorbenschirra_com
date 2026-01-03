@@ -13,10 +13,11 @@ export async function getPosts() {
                 status: error.code
             }
         }
-        const posts = JSON.stringify(data);
+        
+        console.log("blogposts", data);
 
         return {
-            body: posts,
+            body: data,
             status: 200
         }
     } catch (error) {
@@ -27,11 +28,31 @@ export async function getPosts() {
     }
 }
 
-export async function getPost(id: Blogpost) {
+export async function getPost(id: string) {
+    const supabase = await createSupabaseServerClient();
     try {
-        
+        const {data, error} = await supabase
+            .from("posts")
+            .select()
+            .eq("id", id)
+            .single();
+
+        if (error) {
+            return {
+                body: `An error occurred: ${error.message}`,
+                status: error.code
+            }
+        }
+
+        return {
+            body: data,
+            status: 200
+        }
     } catch (error) {
-        
+        return {
+            body: `An error occurred retrieving the post: ${error}`,
+            status: 500
+        }
     }
 }
 
