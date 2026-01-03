@@ -1,7 +1,13 @@
 import Link from "next/link";
 import Header from "../components/Header";
+import { createSupabaseServerClient } from "../lib/supabase/server-client";
 
-export default function dashboard() {
+export default async function dashboard() {
+  const supabase = await createSupabaseServerClient();
+
+  const user = await supabase.auth.getUser();
+  console.log("user: ", user);
+
   return (
     <div className="">
       <Header />
@@ -9,7 +15,7 @@ export default function dashboard() {
         <h1 className="text-4xl font-semibold">Dashboard</h1>
         <div className="w-2/3">
           <div className="flex flex-row justify-between border-b py-1.5">
-            <h2 className="text-2xl font-semibold">Statistiken</h2>
+            <h2 className="text-2xl font-semibold">Statistics</h2>
           </div>
         </div>
         <div className="w-2/3 space-y-8">

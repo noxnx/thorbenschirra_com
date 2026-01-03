@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { loginUser } from "../functions/login";
+import { getSupabaseBrowserClient } from "@/app/lib/supabase/browser-client";
 import { LoginUser } from "@/app/types/user";
 import { useRouter } from "next/navigation";
 
@@ -30,6 +30,7 @@ export default function LoginForm() {
 
   async function handleLogin(event: React.FormEvent) {
     event.preventDefault();
+    const supabase = await getSupabaseBrowserClient();
 
     if (email === "" || password === "") {
       return alert(
@@ -37,17 +38,14 @@ export default function LoginForm() {
       ); /* this has to be changed later on */
     }
 
-    const userData: LoginUser = {
-      email,
-      password,
-    };
-
     try {
-      const response = await loginUser(userData);
-      console.log("LOGIN RESPONSE:", response);
+      await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
     } catch (error) {
       return {
-        body: `An error occurred trying to login: ${error}`,
+        body: `An error occurred: ${error}`,
         status: 500,
       };
     } finally {
