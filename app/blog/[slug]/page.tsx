@@ -58,7 +58,7 @@ export default async function page({
           {blogpost.keywords.map((keyword: string, index: number) => (
             <div
               key={index}
-              className="text-sm p-1 border border-gray-200 w-min"
+              className="text-sm p-2 border border-gray-200 w-min"
             >
               {keyword}
             </div>

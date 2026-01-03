@@ -15,7 +15,7 @@ export default async function blog() {
   return (
     <div>
       <Header />
-      <div className="mx-12 space-y-14">
+      <div className="m-20 space-y-14">
         <div className="space-y-4">
           <p className="text-xl font-semibold">
             Note: This is my blog. That means these are my beliefs, opinions and
@@ -40,10 +40,10 @@ export default async function blog() {
                   <h2 className="text-2xl font-semibold border-b border-gray-200 w-full">
                     {post.header}
                   </h2>
-                  <div className="flex flex-row justify-start w-full">
+                  <div className="flex flex-row justify-start w-full space-x-2">
                     {keywords.map((keyword: string, index: number) => (
                       <div
-                        className="text-sm p-1 border border-gray-200 w-min"
+                        className="text-sm p-2 border border-gray-200 w-min"
                         key={index}
                       >
                         {keyword}
