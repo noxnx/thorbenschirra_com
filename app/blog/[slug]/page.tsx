@@ -30,7 +30,7 @@ export default async function page({
   return (
     <div className="">
       <Header />
-      <div className="mx-12 space-y-14">
+      <div className="mx-12 space-y-6">
         <Link
           href="/blog"
           className="btn btn-md bg-white shadow-none text-black border-none space-x-4"
@@ -54,7 +54,7 @@ export default async function page({
         <h2 className="text-4xl font-semibold border-b border-gray-200 p-2">
           {blogpost.header}
         </h2>
-        <div>
+        <div className="flex flex-row space-x-2">
           {blogpost.keywords.map((keyword: string, index: number) => (
             <div
               key={index}
@@ -64,8 +64,8 @@ export default async function page({
             </div>
           ))}
         </div>
-        <div>{blogpost.description}</div>
-        <div>{blogpost.content}</div>
+        <p style={{ whiteSpace: "pre-line" }}>{blogpost.description}</p>
+        <div style={{ whiteSpace: "pre-line" }}>{blogpost.content}</div>
       </div>
     </div>
   );

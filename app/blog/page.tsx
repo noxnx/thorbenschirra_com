@@ -31,26 +31,31 @@ export default async function blog() {
         <div className="text-3xl font-semibold">
           <h1 className="text-4xl font-semibold">Recent blogposts</h1>
         </div>
-        {blogposts.map((post, index) => {
-          const keywords = post.keywords;
-          return (
-            <Link key={index} href={`/blog/${post.id}`}>
-              <div className="flex flex-col items-end space-y-4 border border-gray-200 p-4">
-                <h2 className="text-2xl font-semibold border-b border-gray-200 w-full">
-                  {post.header}
-                </h2>
-                <div className="flex flex-row justify-start w-full">
-                  {keywords.map((keyword: string, index: number) => (
-                    <div className="p-2 bg-black rounded-box" key={index}>
-                      {keyword}
-                    </div>
-                  ))}
+        <div className="flex flex-col space-y-8">
+          {blogposts.map((post, index) => {
+            const keywords = post.keywords;
+            return (
+              <Link key={index} href={`/blog/${post.id}`}>
+                <div className="flex flex-col items-end space-y-4 border border-gray-200 p-4">
+                  <h2 className="text-2xl font-semibold border-b border-gray-200 w-full">
+                    {post.header}
+                  </h2>
+                  <div className="flex flex-row justify-start w-full">
+                    {keywords.map((keyword: string, index: number) => (
+                      <div
+                        className="text-sm p-1 border border-gray-200 w-min"
+                        key={index}
+                      >
+                        {keyword}
+                      </div>
+                    ))}
+                  </div>
+                  <p className="w-full">{post.description}</p>
                 </div>
-                <p className="w-full">{post.description}</p>
-              </div>
-            </Link>
-          );
-        })}
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
