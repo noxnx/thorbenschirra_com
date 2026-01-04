@@ -64,8 +64,17 @@ export default async function page({
             </div>
           ))}
         </div>
-        <p style={{ whiteSpace: "pre-line" }}>{blogpost.description}</p>
-        <div style={{ whiteSpace: "pre-line" }}>{blogpost.content}</div>
+        <div className="space-y-4">
+          <h3 className="font-semibold text-2xl border-b border-gray-400">
+            Description / Intro
+          </h3>
+          <p style={{ whiteSpace: "pre-line" }} className="playfair">
+            {blogpost.description}
+          </p>
+        </div>
+        <div style={{ whiteSpace: "pre-line" }} className="playfair">
+          {blogpost.content}
+        </div>
       </div>
     </div>
   );

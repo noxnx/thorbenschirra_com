@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Playfair_Display } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const inter = Inter({
   subsets: ["latin"],
 });
 
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-white">
-      <body className={`${playfair.className} text-black bg-white`}>
+      <body className={`${inter.className} text-black bg-white`}>
         {children}
       </body>
     </html>

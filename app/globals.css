@@ -1,2 +1,10 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+:root {
+    line-height: 33.599998px;
+}
+
+.playfair {
+    font-family: "Playfair Display";
+}

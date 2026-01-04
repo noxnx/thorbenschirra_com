@@ -29,7 +29,7 @@ export default async function blog() {
           </p>
         </div>
         <div className="text-3xl font-semibold">
-          <h1 className="text-4xl font-semibold">Recent blogposts</h1>
+          <h1 className="text-4xl font-bold">Recent blogposts</h1>
         </div>
         <div className="flex flex-col space-y-8">
           {blogposts.map((post, index) => {
@@ -43,14 +43,14 @@ export default async function blog() {
                   <div className="flex flex-row justify-start w-full space-x-2">
                     {keywords.map((keyword: string, index: number) => (
                       <div
-                        className="text-sm p-2 border border-gray-200 w-min"
+                        className="text-sm p-2 border border-gray-200"
                         key={index}
                       >
                         {keyword}
                       </div>
                     ))}
                   </div>
-                  <p className="w-full">{post.description}</p>
+                  <p className="w-full playfair">{post.description}</p>
                 </div>
               </Link>
             );
