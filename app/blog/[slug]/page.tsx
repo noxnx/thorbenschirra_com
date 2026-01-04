@@ -1,5 +1,6 @@
 import Header from "@/app/components/Header";
 import { getPost } from "@/app/create_blogpost/functions/blogpost";
+import { Blogpost } from "@/app/types/blogpost";
 import Link from "next/link";
 
 export default async function page({
@@ -26,7 +27,6 @@ export default async function page({
   }
 
   const blogpost = response.body;
-
   return (
     <div className="">
       <Header />
@@ -56,24 +56,26 @@ export default async function page({
         </h2>
         <div className="flex flex-row space-x-2">
           {blogpost.keywords.map((keyword: string, index: number) => (
-            <div
-              key={index}
-              className="text-sm p-2 border border-gray-200 w-min"
-            >
+            <div key={index} className="text-sm p-2 border border-gray-200">
               {keyword}
             </div>
           ))}
         </div>
         <div className="space-y-4">
-          <h3 className="font-semibold text-2xl border-b border-gray-400">
+          <h3 className="font-semibold text-2xl border-b border-gray-200">
             Description / Intro
           </h3>
           <p style={{ whiteSpace: "pre-line" }} className="playfair">
             {blogpost.description}
           </p>
         </div>
-        <div style={{ whiteSpace: "pre-line" }} className="playfair">
-          {blogpost.content}
+        <div className="space-y-4">
+          <h3 className="font-semibold text-2xl border-b border-gray-200">
+            Content
+          </h3>
+          <p style={{ whiteSpace: "pre-line" }} className="playfair">
+            {blogpost.content}
+          </p>
         </div>
       </div>
     </div>
